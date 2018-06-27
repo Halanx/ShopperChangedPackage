@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_refer_earn"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:orientation="vertical"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:layout_gravity="center"
+    android:gravity="center"
+    tools:context="com.shopperapphalanx.Activities.ReferEarnActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Get paid when your friend delivers the order the first time."
+        android:gravity="center"
+        android:textSize="30sp"/>
+
+
+
+    <View
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="5dp"
+        android:background="@android:color/darker_gray"/>
+
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_share"
+        android:background="#b6413f"
+        android:typeface="sans"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:padding="8dp"
+        android:textColor="#fafafa"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:text="Share Now"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@android:color/darker_gray"/>
+
+
+    <!--<ImageButton-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:layout_margin="20dp"-->
+        <!--android:id="@+id/iv_share"-->
+        <!--app:srcCompat="?attr/actionModeShareDrawable"-->
+        <!--android:background="@drawable/cast_abc_scrubber_control_off_mtrl_alpha"-->
+        <!--android:layout_width="@android:dimen/app_icon_size" />-->
+
+
+
+</LinearLayout>

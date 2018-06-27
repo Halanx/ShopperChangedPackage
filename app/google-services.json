@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "104554568387",
+    "firebase_url": "https://halanx-shopper-update.firebaseio.com",
+    "project_id": "halanx-shopper-update",
+    "storage_bucket": "halanx-shopper-update.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:104554568387:android:ecdf8558527d56b6",
+        "android_client_info": {
+          "package_name": "com.shopperapphalanx"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "104554568387-eigah7g0nuq9sa07au2n6b6bnosrlk7f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.shopperapphalanx",
+            "certificate_hash": "dc86fb4765532cff8296d060de5c750d1309abe6"
+          }
+        },
+        {
+          "client_id": "104554568387-po999v2n67hi4ud2dck1e0t6a5drkik5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAirRxya3a0QuRa8DX0xCCBAT7GQ-sdumE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "104554568387-po999v2n67hi4ud2dck1e0t6a5drkik5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

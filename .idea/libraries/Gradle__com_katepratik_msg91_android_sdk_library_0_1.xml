@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.katepratik.msg91-android-sdk:library-0.1">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.android/build-cache/9d1de3b665d0cbaebbd8570431a5f872021fa80e/output/res" />
+      <root url="jar://$USER_HOME$/.android/build-cache/9d1de3b665d0cbaebbd8570431a5f872021fa80e/output/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.katepratik.msg91-android-sdk/library/0.1/c80c118d50ecf9a0428a4c6f1350c714d33f6f1c/library-0.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

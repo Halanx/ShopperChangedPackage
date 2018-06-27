@@ -1,0 +1,17 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">#c7c7c7</item>
+        <item name="colorPrimaryDark">#7b7b7b</item>
+        <item name="colorAccent">#000000</item>
+
+    </style>
+
+    <style name="Theme.AppCompat.CompactMenu." parent="Animation.AppCompat.Dialog">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorGrey</item>
+        <item name="colorAccent">@color/colorGrey</item>
+
+    </style>
+</resources>

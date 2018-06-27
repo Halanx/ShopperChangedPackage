@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.msg91.sendotp.library:library-2.7">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.android/build-cache/d2336d18fdab27bb695ee1f9b41e2ca4756a3b8a/output/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/d2336d18fdab27bb695ee1f9b41e2ca4756a3b8a/output/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.msg91.sendotp.library/library/2.7/7e86511d9561a63b938006793ad69aba640502ca/library-2.7-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

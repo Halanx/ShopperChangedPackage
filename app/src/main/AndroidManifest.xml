@@ -1,0 +1,79 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools" package="com.shopperapphalanx">
+
+<uses-permission android:name="android.permission.CALL_PHONE" />
+<uses-permission android:name="com.samarthgupta.shopperapphalanx.permission.MAPS_RECEIVE" />
+<uses-permission android:name="android.permission.GET_ACCOUNTS" />
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.READ_PROFILE" />
+<uses-permission android:name="android.permission.READ_CONTACTS" />
+<uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+<uses-permission android:name="android.permission.ACCESS_INTERNET" />
+<uses-permission android:name="android.permission.VIBRATE" />
+
+<uses-feature android:name="android.hardware.camera" android:required="true" />
+
+<application android:allowBackup="true" android:icon="@drawable/icon" android:label="@string/app_name"
+    android:supportsRtl="true" android:theme="@style/Theme.AppCompat.Light">
+
+
+    <meta-data
+        android:name="com.google.android.maps.v2.API_KEY"
+        android:value="AIzaSyCe72tVruDR7DceRmXnJN6aCOa5GgvZZfw" />
+
+    <activity android:name=".Activities.SignInActivity" android:label="Sign In" />
+    <activity android:name=".Activities.RegisterActivity" android:label="Register"
+        android:parentActivityName=".Activities.SignInActivity" />
+    <activity android:name=".Activities.HelpActivity" android:label="Help"
+        android:parentActivityName=".Activities.HomeActivity" />
+    <activity android:name=".Activities.ReferEarnActivity" android:label="Refer and Earn"
+        android:parentActivityName=".Activities.HomeActivity" />
+    <activity android:name=".Activities.HomeActivity" android:label="@string/title_activity_home"
+        android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" android:screenOrientation="portrait" />
+
+    <activity android:name=".Activities.SplashActivity" android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+    </activity>
+
+
+    <activity android:name=".Activities.AboutActivity" android:label="About us"
+        android:parentActivityName=".Activities.HomeActivity" />
+    <activity android:name=".Activities.DocumentsActivity" android:parentActivityName=".Activities.HomeActivity"
+        android:label="Documents" />
+
+    <receiver android:name=".Fragments.HomeFragment" />
+
+    <activity android:name=".Activities.Schedule" android:label="Schedule"
+        android:parentActivityName=".Activities.HomeActivity" />
+
+    <activity android:name=".Activities.Acceptance" android:label="Accept Batch"/>
+
+    <!-- Firebase Notifications -->
+    <service android:name=".service.MyFirebaseMessagingService">
+        <intent-filter>
+            <action android:name="com.google.firebase.MESSAGING_EVENT" />
+        </intent-filter>
+    </service>
+    <service android:name=".service.MyFirebaseInstanceIDService">
+        <intent-filter>
+            <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+        </intent-filter>
+    </service>
+    <!-- ./Firebase Notifications -->
+
+    <activity android:name=".Activities.OnWayStoreActivity" android:label="On the way to store">
+
+
+    </activity>
+    <activity android:name=".Activities.OnWayUserActivity" android:label="On the way to user">
+
+    </activity>
+</application>
+
+</manifest>
