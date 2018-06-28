@@ -46,9 +46,8 @@ public class EarningRecyclerAdapter extends RecyclerView.Adapter<EarningRecycler
     }
     @Override
     public void onBindViewHolder(EarningRecyclerAdapter.EarningBaseHolder holder, int position) {
-        holder.batchNo.setText(String.valueOf(arrayList.get(position).getBatchNo()));
+        holder.batchNo.setText(String.valueOf(arrayList.get(position).getNoOfOrders()));
         holder.earn.setText(String.valueOf(arrayList.get(position).getIncome()));
-        holder.orderNo.setText(String.valueOf(arrayList.get(position).getNoOfOrders()));
     }
     @Override
     public int getItemCount() {

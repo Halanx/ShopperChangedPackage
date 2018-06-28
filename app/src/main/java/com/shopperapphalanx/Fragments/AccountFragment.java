@@ -35,6 +35,8 @@ import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+import static com.shopperapphalanx.GlobalClass.djangoBaseUrl;
+
 
 public class AccountFragment extends Fragment implements View.OnClickListener {
 
@@ -65,13 +67,13 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
         profile = view.findViewById(R.id.profile);
 
 
-        Volley.newRequestQueue(getActivity()).add(new JsonObjectRequest(Request.Method.GET, "https://api.halanx.com/shoppers/detail", new Response.Listener<JSONObject>() {
+        Volley.newRequestQueue(getActivity()).add(new JsonObjectRequest(Request.Method.GET, djangoBaseUrl+"shoppers/detail", new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
 
                 try {
                     tvName.setText(response.getJSONObject("user").getString("first_name"));
-                    tvVehicle.setText(response.getString("Vehicle"));
+                    tvVehicle.setText(response.getString("vehicle"));
 //                    Picasso.with(getActivity()).load().into(profile);
                 } catch (JSONException e) {
                     e.printStackTrace();

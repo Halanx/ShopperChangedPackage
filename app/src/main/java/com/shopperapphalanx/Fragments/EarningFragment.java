@@ -34,7 +34,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.shopperapphalanx.Activities.GlobalClass.djangoBaseUrl;
+import static com.shopperapphalanx.GlobalClass.djangoBaseUrl;
 
 public class EarningFragment extends Fragment {
 
@@ -63,13 +63,13 @@ public class EarningFragment extends Fragment {
         Log.d("token",token);
         amount_left = (TextView) v.findViewById(R.id.amount_left);
         amount_payed = (TextView) v.findViewById(R.id.amount_payed);
-        Volley.newRequestQueue(getActivity()).add(new JsonObjectRequest(Request.Method.GET, djangoBaseUrl+"/shoppers/detail", new Response.Listener<JSONObject>() {
+        Volley.newRequestQueue(getActivity()).add(new JsonObjectRequest(Request.Method.GET, djangoBaseUrl+"shoppers/detail", new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
 
                 try {
-                    amount_left.setText(response.getString("DueAmount"));
-                    amount_payed.setText(response.getString("PaidAmount"));
+                    amount_left.setText(response.getString("due_amount"));
+                    amount_payed.setText(response.getString("paid_amount"));
                } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -116,7 +116,7 @@ public class EarningFragment extends Fragment {
                     for (int i = 0; i < response.length(); i++) {
                         try {
                             progressBar.setVisibility(View.GONE);
-                            orderNo.add(response.getJSONObject(i).getInt("id"));
+                            orderNo.add(response.getJSONObject(i).getInt("batch"));
                             earn.add(response.getJSONObject(i).getString("Earnings"));
                         } catch (JSONException e) {
                             e.printStackTrace();

@@ -128,6 +128,8 @@ public class BatchUserAdapter extends RecyclerView.Adapter<BatchUserAdapter.Batc
         Button btUserCall;
         CheckBox cb;
 
+        ImageView menu;
+
         List<BatchItem> items;
 
         public BatchHolderUser(View itemView, List<BatchItem> batchItems) {

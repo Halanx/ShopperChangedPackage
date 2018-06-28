@@ -68,7 +68,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
-            android:background="#b6413f"
+            android:background="@color/colorAccent"
             android:text="Pick up Completed"
             android:textSize="25dp"
             android:textStyle="bold"

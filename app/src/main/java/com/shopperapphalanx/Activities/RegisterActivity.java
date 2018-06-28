@@ -25,7 +25,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.katepratik.msg91api.MSG91;
 import com.shopperapphalanx.POJO.Resp;
 import com.shopperapphalanx.R;
 import com.shopperapphalanx.app.Config;
@@ -51,8 +50,7 @@ public class RegisterActivity extends AppCompatActivity {
     String email, password, firstName, lastName, mno, city, icode, random;
     Resp resp;
 
-    MSG91 msg91 = new MSG91("156475AdUYanwCiKI35970f67d");
-    String regId;
+       String regId;
 
     String phpURL = "https://api.halanx.com";
     String djangoURL = "https://api.halanx.com";
@@ -66,7 +64,6 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        msg91.validate();
 
         btnRegister = (Button) findViewById(R.id.btn_register);
         btnVerify = (Button) findViewById(R.id.btn_verify);
@@ -142,7 +139,7 @@ public class RegisterActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
 
-                    Volley.newRequestQueue(getApplicationContext()).add(new JsonObjectRequest(Request.Method.POST, "https://api.halanx.com/users/getotp/" + mno+"/", json, new Response.Listener<JSONObject>() {
+                    Volley.newRequestQueue(getApplicationContext()).add(new JsonObjectRequest(Request.Method.POST, djangoURL+"users/getotp/" + mno+"/", json, new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
                             Log.d("otp_response", String.valueOf(response));
@@ -192,7 +189,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 e.printStackTrace();
                             }
 
-                            Volley.newRequestQueue(getApplicationContext()).add(new JsonObjectRequest(Request.Method.POST, "https://api.halanx.com/users/getotp/" + mno+"/", null, new Response.Listener<JSONObject>() {
+                            Volley.newRequestQueue(getApplicationContext()).add(new JsonObjectRequest(Request.Method.POST, djangoURL+"users/getotp/" + mno+"/", new Response.Listener<JSONObject>() {
                                 @Override
                                 public void onResponse(JSONObject response) {
                                     Log.d("otp_response", String.valueOf(response));
@@ -242,9 +239,9 @@ public class RegisterActivity extends AppCompatActivity {
             jsonObject.put("username", "c" + mno);
             jsonObject.put("email", email);
             jsonObject.put("password", password);
-            jsonObject.put("FirstName", firstName);
-            jsonObject.put("LastName", lastName);
-            jsonObject.put("PhoneNo", mno);
+            jsonObject.put("first_name", firstName);
+            jsonObject.put("last_name", lastName);
+            jsonObject.put("phone_no", mno);
             jsonObject.put("otp",Integer.parseInt(text));
         } catch (JSONException e) {
             e.printStackTrace();
@@ -261,7 +258,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                     try {
                         getSharedPreferences("Tokenkey", Context.MODE_PRIVATE).edit().putString("token", "token " + response1.getString("key")).commit();
-                        Volley.newRequestQueue(RegisterActivity.this).add(new JsonObjectRequest(Request.Method.GET, "https://api.halanx.com/users/detail/", jsonObject, new com.android.volley.Response.Listener<JSONObject>() {
+                        Volley.newRequestQueue(RegisterActivity.this).add(new JsonObjectRequest(Request.Method.GET, djangoURL+"users/detail/", jsonObject, new com.android.volley.Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
                                 Log.d("data", String.valueOf(response));
@@ -270,7 +267,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     getSharedPreferences("Login", Context.MODE_PRIVATE).edit().
                                             putString("firstname", response.getJSONObject("user").getString("first_name")).
                                             putString("lastname", response.getJSONObject("user").getString("last_name")).
-                                            putString("UserInfo", String.valueOf(response)).putString("MobileNumber", mno).
+                                            putString("UserInfo", String.valueOf(response)).putString("phone_no", mno).
                                             putBoolean("first_login", true).
                                             putBoolean("Loginned", true).apply();
                                     getSharedPreferences("status", Context.MODE_PRIVATE).edit().

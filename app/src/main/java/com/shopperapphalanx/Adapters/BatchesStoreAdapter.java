@@ -16,6 +16,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.shopperapphalanx.POJO.BatchInfo;
 import com.shopperapphalanx.POJO.BatchItem;
 import com.shopperapphalanx.R;
@@ -128,6 +131,14 @@ public class BatchesStoreAdapter extends RecyclerView.Adapter<BatchesStoreAdapte
 
         }
 
+        holder.report.setVisibility(View.VISIBLE);
+        holder.report.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
 
     }
 
@@ -144,6 +155,7 @@ public class BatchesStoreAdapter extends RecyclerView.Adapter<BatchesStoreAdapte
         ImageView ivStoreNav, ivUserNav, ivProductImage;
         Button btUserCall;
 
+        ImageView report;
         List<BatchItem> items;
 
         public BatchesHolder(View itemView, List<BatchItem> batchItems) {
@@ -165,6 +177,7 @@ public class BatchesStoreAdapter extends RecyclerView.Adapter<BatchesStoreAdapte
             ivProductImage = (ImageView) itemView.findViewById(R.id.iv_product_image);
             tvProductPrice = (TextView) itemView.findViewById(R.id.tv_product_price);
             tvUserAddress = (TextView) itemView.findViewById(R.id.tv_user_address);
+            report = itemView.findViewById(R.id.menu);
 
             items = batchItems;
             ivStoreNav.setOnClickListener(this);

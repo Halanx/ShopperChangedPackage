@@ -8,7 +8,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -36,7 +35,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.shopperapphalanx.Activities.GlobalClass.djangoBaseUrl;
+import static com.shopperapphalanx.GlobalClass.djangoBaseUrl;
 
 /**
  * Created by samarthgupta on 12/02/17.
@@ -330,7 +329,7 @@ public class SignInActivity extends AppCompatActivity {
                 }
 
                 try {
-                    Volley.newRequestQueue(SignInActivity.this).add(new JsonObjectRequest(Request.Method.POST, "https://api.halanx.com/rest-auth/login/", jsonObject, new com.android.volley.Response.Listener<JSONObject>() {
+                    Volley.newRequestQueue(SignInActivity.this).add(new JsonObjectRequest(Request.Method.POST, djangoBaseUrl+"est-auth/login/", jsonObject, new com.android.volley.Response.Listener<JSONObject>() {
                         @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
                         @Override
                         public void onResponse(JSONObject response) {
@@ -343,7 +342,7 @@ public class SignInActivity extends AppCompatActivity {
 
                                 getSharedPreferences("Tokenkey", Context.MODE_PRIVATE).edit().putString("token", "token " + token).commit();
                                 Log.d("token_key", getSharedPreferences("Tokenkey", Context.MODE_PRIVATE).getString("token", null));
-                                Volley.newRequestQueue(SignInActivity.this).add(new JsonObjectRequest(Request.Method.GET, "https://api.halanx.com/shoppers/detail/", jsonObject, new com.android.volley.Response.Listener<JSONObject>() {
+                                Volley.newRequestQueue(SignInActivity.this).add(new JsonObjectRequest(Request.Method.GET, djangoBaseUrl+"shoppers/detail/", jsonObject, new com.android.volley.Response.Listener<JSONObject>() {
                                     @Override
                                     public void onResponse(JSONObject response) {
                                         Log.d("data", String.valueOf(response));

@@ -23,7 +23,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.shopperapphalanx.Activities.GlobalClass.djangoBaseUrl;
+import static com.shopperapphalanx.GlobalClass.djangoBaseUrl;
 
 public class RatingFragment extends Fragment {
 

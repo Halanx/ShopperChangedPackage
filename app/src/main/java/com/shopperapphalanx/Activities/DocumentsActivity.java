@@ -30,7 +30,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static com.shopperapphalanx.Activities.GlobalClass.djangoBaseUrl;
+import static com.shopperapphalanx.GlobalClass.djangoBaseUrl;
 
 public class DocumentsActivity extends AppCompatActivity {
     static final int REQUEST_IMAGE_CAPTURE_ADHAAR = 1;

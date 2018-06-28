@@ -37,13 +37,13 @@ dependencies {
     implementation 'org.apache.commons:commons-lang3:3.4'
     implementation 'com.android.support:appcompat-v7:27.1.0'
     implementation 'com.squareup.picasso:picasso:2.5.2'
-    implementation 'com.google.firebase:firebase-auth:10.0.1'
-    implementation 'com.google.firebase:firebase-database:10.0.1'
-    implementation 'com.google.firebase:firebase-messaging:10.0.1'
+    implementation 'com.google.firebase:firebase-auth:12.0.1'
+    implementation 'com.google.firebase:firebase-database:12.0.1'
+    implementation 'com.google.firebase:firebase-messaging:12.0.1'
     implementation 'com.android.support:design:27.1.0'
     implementation 'devs.mulham.horizontalcalendar:horizontalcalendar:1.1.7'
-    implementation 'com.google.android.gms:play-services-maps:10.0.1'
-    implementation 'com.google.android.gms:play-services:10.0.1'
+    implementation 'com.google.android.gms:play-services-maps:12.0.1'
+    implementation 'com.google.android.gms:play-services:12.0.1'
     implementation 'com.squareup.retrofit2:retrofit:2.0.2'
     implementation 'com.squareup.retrofit2:converter-gson:2.0.2'
     implementation 'devlight.io:navigationtabbar:1.2.5'
@@ -59,7 +59,6 @@ dependencies {
     implementation 'com.msg91.sendotp.library:library:2.7'
     implementation 'com.github.aarsy.googlemapsanimations:googlemapsanimations:1.0.5'
     testImplementation 'junit:junit:4.12'
-
 }
 
 apply plugin: 'com.google.gms.google-services'

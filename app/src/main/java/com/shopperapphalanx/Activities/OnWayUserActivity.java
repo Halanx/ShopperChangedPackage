@@ -10,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,6 +34,8 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.shopperapphalanx.GlobalClass.djangoBaseUrl;
+
 public class OnWayUserActivity extends AppCompatActivity {
 
 
@@ -46,6 +49,11 @@ public class OnWayUserActivity extends AppCompatActivity {
     ProgressBar progressBar;
     TextView batchno;
 
+    LinearLayout ll_detail;
+    TextView order;
+    TextView cod;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,12 +64,16 @@ public class OnWayUserActivity extends AppCompatActivity {
         rv = (RecyclerView) findViewById(R.id.rv_batch_user);
         batchno = (TextView) findViewById(R.id.batchno);
         cvDrop = (CardView) findViewById(R.id.cv_drop);
+        ll_detail = findViewById(R.id.detail);
+        order = findViewById(R.id.orderno);
+        cod = findViewById(R.id.cod);
+
         id = getSharedPreferences(Config.SHARED_PREF, Context.MODE_PRIVATE).getString("batch_id", "1");
-        url = "https://api.halanx.com/batch/" + id + "/";
+        url = djangoBaseUrl + "batch/" + id + "/";
         Log.d("url",url);
 
 
-        Volley.newRequestQueue(this).add(new JsonObjectRequest(Request.Method.GET, url,null, new Response.Listener<JSONObject>() {
+        Volley.newRequestQueue(this).add(new JsonObjectRequest(Request.Method.GET, url, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
 

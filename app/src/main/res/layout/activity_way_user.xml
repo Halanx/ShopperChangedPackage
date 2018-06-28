@@ -39,9 +39,38 @@
 
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_batch_user"
+    <LinearLayout
+        android:id="@+id/detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_below="@id/batch"
+        >
+        <TextView
+            android:id="@+id/orderno"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:text="Order: "
+            android:textSize="25dp"
+            android:textColor="#313131"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:text=" "
+            android:id="@+id/cod"
+            android:textSize="25dp"
+            android:textColor="#313131"
+            android:layout_alignParentTop="true"/>
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+
+        android:id="@+id/rv_batch_user"
+        android:layout_below="@id/detail"
         android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -69,7 +98,7 @@
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#b6413f"
+            android:background="@color/colorAccent"
             android:gravity="center"
             android:padding="5dp"
             android:text="Dropping Complete"
