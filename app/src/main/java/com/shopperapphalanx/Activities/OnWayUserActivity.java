@@ -24,7 +24,10 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.GsonBuilder;
 import com.shopperapphalanx.Adapters.BatchUserAdapter;
+import com.shopperapphalanx.Adapters.BatchesStoreAdapter;
+import com.shopperapphalanx.Interfaces.DataInterface;
 import com.shopperapphalanx.POJO.BatchInfo;
+import com.shopperapphalanx.POJO.earningpagination;
 import com.shopperapphalanx.R;
 import com.shopperapphalanx.app.Config;
 
@@ -33,6 +36,11 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.shopperapphalanx.GlobalClass.djangoBaseUrl;
 
@@ -50,9 +58,14 @@ public class OnWayUserActivity extends AppCompatActivity {
     TextView batchno;
 
     LinearLayout ll_detail;
-    TextView order;
-    TextView cod;
+    public static TextView order;
+    public static TextView cod;
 
+
+    Retrofit.Builder builder;
+    Retrofit retrofit;
+    DataInterface client;
+    String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,56 +85,40 @@ public class OnWayUserActivity extends AppCompatActivity {
         url = djangoBaseUrl + "batch/" + id + "/";
         Log.d("url",url);
 
+        builder = new Retrofit.Builder().baseUrl(djangoBaseUrl).addConverterFactory(GsonConverterFactory.create());
+        retrofit = builder.build();
+        client = retrofit.create(DataInterface.class);
 
-        Volley.newRequestQueue(this).add(new JsonObjectRequest(Request.Method.GET, url, new Response.Listener<JSONObject>() {
+        token = getSharedPreferences("Tokenkey", Context.MODE_PRIVATE).getString("token",null);
+
+
+
+        Log.d("token",token);
+        Call<earningpagination> orderCall = client.getcurrentbatch(token);
+        orderCall.enqueue(new Callback<earningpagination>() {
             @Override
-            public void onResponse(JSONObject response) {
+            public void onResponse(Call<earningpagination> call, retrofit2.Response<earningpagination> response) {
+                {
+                    batchno.setText(String.valueOf(response.body().getResults().get(0).getId()));
 
-                Log.i("RES", String.valueOf(response));
+                    RecyclerView.LayoutManager manager = new LinearLayoutManager(getApplicationContext());
+                    BatchUserAdapter adapter = new BatchUserAdapter(response.body().getResults().get(0),getApplicationContext());
+                    rv.setLayoutManager(manager);
+                    rv.setAdapter(adapter);
+                    rv.setHasFixedSize(true);
 
-                progressBar.setVisibility(View.GONE);
-                batchno.setText(id);
-                batch = new GsonBuilder().create().fromJson(String.valueOf(response), BatchInfo.class);
 
-                BatchUserAdapter adapter = new BatchUserAdapter(batch, OnWayUserActivity.this);
-                RecyclerView.LayoutManager manager = new LinearLayoutManager(OnWayUserActivity.this);
-                rv.setLayoutManager(manager);
-                rv.setAdapter(adapter);
-                rv.setHasFixedSize(true);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
+                }
 
-                progressBar.setVisibility(View.GONE);
-
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("Content-Type", "application/json");
-                params.put("Authorization", getApplicationContext().getSharedPreferences("Tokenkey", Context.MODE_PRIVATE).getString("token", null));
-                return params;
-            }
-
-        }).setRetryPolicy(new RetryPolicy() {
-            @Override
-            public int getCurrentTimeout() {
-                return 100000;
             }
 
             @Override
-            public int getCurrentRetryCount() {
-                return 100000;
-            }
-
-            @Override
-            public void retry(VolleyError volleyError) throws VolleyError {
-
-                progressBar.setVisibility(View.GONE);
+            public void onFailure(Call<earningpagination> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "Network Error", Toast.LENGTH_SHORT).show();
             }
         });
+
+
 
         cvDrop.setOnClickListener(new View.OnClickListener() {
             @Override

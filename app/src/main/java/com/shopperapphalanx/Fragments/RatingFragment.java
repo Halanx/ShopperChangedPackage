@@ -50,7 +50,7 @@ public class RatingFragment extends Fragment {
                     public void onResponse(String response) {
                         try {
                             JSONObject json = new JSONObject(response);
-                            data = json.getString("AvgRating").substring(0,3);
+                            data = json.getString("avg_rating").substring(0,3);
                            rating_text.setText(data);
                         } catch (JSONException e) {
                             e.printStackTrace();

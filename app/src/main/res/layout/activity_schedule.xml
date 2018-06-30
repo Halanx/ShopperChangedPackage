@@ -55,6 +55,7 @@
                 android:checked="false"
                 android:id="@+id/t1"
                 android:layout_weight="1"
+                android:theme="@style/MyRadioButton"
                 />
             </android.support.v7.widget.CardView>
             <android.support.v7.widget.CardView

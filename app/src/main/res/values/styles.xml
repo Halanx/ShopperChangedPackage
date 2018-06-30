@@ -1,17 +1,24 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light">
-        <item name="colorPrimary">#c7c7c7</item>
-        <item name="colorPrimaryDark">#7b7b7b</item>
-        <item name="colorAccent">#000000</item>
-
-    </style>
-
     <style name="Theme.AppCompat.CompactMenu." parent="Animation.AppCompat.Dialog">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorGrey</item>
         <item name="colorAccent">@color/colorGrey</item>
+        <item name="android:colorSecondary" tools:targetApi="n_mr1"> @color/colorPrimary</item>
 
     </style>
+
+    <style name="AppTheme" parent="Base.Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:colorSecondary" tools:targetApi="n_mr1">@color/colorPrimary</item>
+    </style>
+
+    <style name="MyRadioButton" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/gray</item>
+        <item name="colorControlActivated">@color/colorAccent</item>
+    </style>
+
 </resources>

@@ -16,6 +16,8 @@ import com.shopperapphalanx.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import static com.shopperapphalanx.GlobalClass.djangoBaseUrl;
+
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -28,7 +30,7 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
 
-        Volley.newRequestQueue(getApplicationContext()).add(new JsonObjectRequest(Request.Method.GET, "https://api.halanx.com/version/2/", null, new com.android.volley.Response.Listener<JSONObject>() {
+        Volley.newRequestQueue(getApplicationContext()).add(new JsonObjectRequest(Request.Method.GET, djangoBaseUrl+"version/2/", new com.android.volley.Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
 

@@ -134,7 +134,7 @@ public class Schedule extends AppCompatActivity implements DatePickerListener {
                     check();
                     flagselected = false;
                     t1.setChecked(true);
-                    t1.setBackgroundColor(Color.RED);
+                    t1.setBackgroundColor(Color.WHITE);
                     time_selected = String.valueOf(t1.getText());
                 }
                 else{
@@ -151,13 +151,14 @@ public class Schedule extends AppCompatActivity implements DatePickerListener {
                 if (t2.isChecked()) {
                     check();
                     flagselected = false;
+                    t1.setBackgroundColor(Color.WHITE);
                     t2.setChecked(true);
-                    t2.setBackgroundColor(Color.RED);
                     time_selected = String.valueOf(t2.getText());
                 }
                 else{
                     flagselected = true;
                     t2.setChecked(false);
+                    t1.setBackgroundColor(Color.WHITE);
                     t2.setBackgroundColor(Color.WHITE);
                     time_selected = null;
 
@@ -170,7 +171,8 @@ public class Schedule extends AppCompatActivity implements DatePickerListener {
                     check();
                     flagselected = false;
                     t3.setChecked(true);
-                    t3.setBackgroundColor(Color.RED);
+
+                    t1.setBackgroundColor(Color.WHITE);
 
                     time_selected = String.valueOf(t3.getText());
                 }
@@ -189,7 +191,8 @@ public class Schedule extends AppCompatActivity implements DatePickerListener {
                     check();
                     flagselected = false;
                     t4.setChecked(true);
-                    t4.setBackgroundColor(Color.RED);
+
+                    t1.setBackgroundColor(Color.WHITE);
 
                     time_selected = String.valueOf(t4.getText());
                 }
@@ -209,7 +212,8 @@ public class Schedule extends AppCompatActivity implements DatePickerListener {
                     check();
                     flagselected = false;
                     t5.setChecked(true);
-                    t5.setBackgroundColor(Color.RED);
+
+                    t1.setBackgroundColor(Color.WHITE);
 
                     time_selected = String.valueOf(t5.getText());
                 }
@@ -229,7 +233,8 @@ public class Schedule extends AppCompatActivity implements DatePickerListener {
                     check();
                     flagselected = false;
                     t6.setChecked(true);
-                    t6.setBackgroundColor(Color.RED);
+
+                    t1.setBackgroundColor(Color.WHITE);
 
                     time_selected = String.valueOf(t6.getText());
                 }

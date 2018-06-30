@@ -3,17 +3,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
+    android:layout_marginTop="50dp"
     android:orientation="vertical"
     tools:context="com.shopperapphalanx.Activities.SignInActivity">
 
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Halanx"
+        android:textColor="@color/colorAccent"
+        android:gravity="center_horizontal"
+        android:textSize="40dp"
+        android:textStyle="bold"/>
 
     <LinearLayout
         android:id="@+id/email_login_form"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginTop="30dp">
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"

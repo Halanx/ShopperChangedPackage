@@ -7,23 +7,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.shopperapphalanx.POJO.BatchInfo;
 import com.shopperapphalanx.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Dell on 6/30/2017.
  */
 
 public class EarningRecyclerAdapter extends RecyclerView.Adapter<EarningRecyclerAdapter.EarningBaseHolder> {
-    private ArrayList<EarningObject> arrayList;
+    private List<BatchInfo> arrayList;
 
-    public EarningRecyclerAdapter(ArrayList<EarningObject> arrayList1) {
-        arrayList  =new ArrayList<>();
-        Log.d("list", String.valueOf(arrayList1.get(0)));
-        for(int i=arrayList1.size()-1;i>=0;i--){
-            this.arrayList.add(arrayList1.get(i));
-        }
+    public EarningRecyclerAdapter(List<BatchInfo> arrayList1) {
+
+        this.arrayList = arrayList1;
         }
 
     public class EarningBaseHolder extends RecyclerView.ViewHolder {
@@ -46,8 +45,8 @@ public class EarningRecyclerAdapter extends RecyclerView.Adapter<EarningRecycler
     }
     @Override
     public void onBindViewHolder(EarningRecyclerAdapter.EarningBaseHolder holder, int position) {
-        holder.batchNo.setText(String.valueOf(arrayList.get(position).getNoOfOrders()));
-        holder.earn.setText(String.valueOf(arrayList.get(position).getIncome()));
+        holder.batchNo.setText(String.valueOf(arrayList.get(position).getId()));
+        holder.earn.setText(String.valueOf(arrayList.get(position).getEarnings()));
     }
     @Override
     public int getItemCount() {

@@ -13,19 +13,19 @@ public class UserWithCart {
     @SerializedName("id")
     @Expose
     private Integer id;
-    @SerializedName("Customer")
+    @SerializedName("customer")
     @Expose
     public Customer customer;
-    @SerializedName("Total")
+    @SerializedName("total")
     @Expose
     private Double subtotal;
-    @SerializedName("Taxes")
+    @SerializedName("tax")
     @Expose
     private Double taxes;
-    @SerializedName("EstimatedDeliveryCharges")
+    @SerializedName("estimated_delivery_charges")
     @Expose
     private Double estimatedeliverycharge;
-    @SerializedName("TotalWithExtras")
+    @SerializedName("total_with_extras")
     @Expose
     private Double total;
     @SerializedName("DeliveryCharges")

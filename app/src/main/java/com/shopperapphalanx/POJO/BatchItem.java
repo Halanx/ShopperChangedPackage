@@ -16,28 +16,28 @@ public class BatchItem implements Comparator<BatchItem> {
     @SerializedName("id")
     @Expose
     private Integer id;
-    @SerializedName("Cart")
+    @SerializedName("cart")
     @Expose
     public UserWithCart cartUser;
-    @SerializedName("Item")
+    @SerializedName("product")
     @Expose
     private Item item;
-    @SerializedName("OrderId")
+    @SerializedName("order")
     @Expose
     private OrderId orderIdId;
-    @SerializedName("RemovedFromCart")
+    @SerializedName("removed_from_cart")
     @Expose
     private Boolean removedFromCart;
-    @SerializedName("IsOrdered")
+    @SerializedName("is_ordered")
     @Expose
     private Boolean isOrdered;
-    @SerializedName("Quantity")
+    @SerializedName("quantity")
     @Expose
     private Double quantity;
-    @SerializedName("SubTotal")
+    @SerializedName("sub_total")
     @Expose
     private Double subTotal;
-    @SerializedName("Notes")
+    @SerializedName("notes")
     @Expose
     private String notes;
     @SerializedName("Active")

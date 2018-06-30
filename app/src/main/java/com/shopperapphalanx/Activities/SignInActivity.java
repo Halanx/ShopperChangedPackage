@@ -149,7 +149,7 @@ public class SignInActivity extends AppCompatActivity {
                                 String url = djangoBaseUrl + "users/loginotp/";
                                 JSONObject json = new JSONObject();
                                 try {
-                                    json.put("username", "c" + mobile.trim());
+                                    json.put("username", "s" + mobile.trim());
                                     json.put("password", Integer.parseInt(String.valueOf(otp.getText()).trim()));
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -329,7 +329,7 @@ public class SignInActivity extends AppCompatActivity {
                 }
 
                 try {
-                    Volley.newRequestQueue(SignInActivity.this).add(new JsonObjectRequest(Request.Method.POST, djangoBaseUrl+"est-auth/login/", jsonObject, new com.android.volley.Response.Listener<JSONObject>() {
+                    Volley.newRequestQueue(SignInActivity.this).add(new JsonObjectRequest(Request.Method.POST, djangoBaseUrl+"rest-auth/login/", jsonObject, new com.android.volley.Response.Listener<JSONObject>() {
                         @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
                         @Override
                         public void onResponse(JSONObject response) {

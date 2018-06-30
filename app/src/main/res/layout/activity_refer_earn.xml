@@ -28,6 +28,7 @@
         android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:visibility="gone"
         android:layout_marginBottom="5dp"
         android:background="@android:color/darker_gray"/>
 
@@ -38,7 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tv_share"
-        android:background="#b6413f"
+        android:background="@color/colorAccent"
         android:typeface="sans"
         android:layout_marginStart="4dp"
         android:layout_marginEnd="4dp"
@@ -46,6 +47,7 @@
         android:textColor="#fafafa"
         android:gravity="center"
         android:textSize="30sp"
+        android:layout_marginTop="@dimen/margin_large"
         android:text="Share Now"
         />
 
@@ -54,6 +56,7 @@
         android:layout_height="1dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
+        android:visibility="gone"
         android:background="@android:color/darker_gray"/>
 
 

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:theme="@style/AppTheme">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Report image or title "
+        android:textSize="@dimen/textsizeLarge"
+        android:padding="@dimen/padding_medium"
+        android:textColor="@color/textcolor_dark"
+        android:id="@+id/text"/>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/list_item"
+        android:layout_below="@id/text">
+
+    </ListView>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cancel"
+        android:background="@color/colorWhite"
+        android:textColor="@color/dark_red"
+        android:layout_below="@id/list_item"
+        android:layout_toLeftOf="@id/report"
+        android:text="Cancel"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/report"
+        android:layout_below="@id/list_item"
+        android:background="@color/colorWhite"
+        android:textColor="@color/gray"
+        android:layout_alignParentEnd="true"
+        android:text="Select"/>
+</RelativeLayout>

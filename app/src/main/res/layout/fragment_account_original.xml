@@ -35,7 +35,8 @@
                         android:layout_width="126dp"
                         android:layout_height="100dp"
                         android:layout_margin="10dp"
-                        android:src="@drawable/profile_image" />
+                        android:src="@drawable/profile_image"
+                        android:tint="#c9c9c9"/>
 
                     <TextView
                         android:id="@+id/tv_name"
@@ -58,7 +59,7 @@
                         android:layout_height="100dp"
                         android:layout_margin="10dp"
                         android:src="@drawable/vehicle_icon"
-
+                        android:tint="#c9c9c9"
                         />
 
                     <TextView

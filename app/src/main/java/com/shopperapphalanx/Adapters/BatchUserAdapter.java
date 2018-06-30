@@ -24,6 +24,9 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import static com.shopperapphalanx.Activities.OnWayUserActivity.cod;
+import static com.shopperapphalanx.Activities.OnWayUserActivity.order;
+
 /**
  * Created by samarthgupta on 20/07/17.
  */
@@ -85,6 +88,16 @@ public class BatchUserAdapter extends RecyclerView.Adapter<BatchUserAdapter.Batc
         }
         //For position = 0
         else {
+
+            order.setText("Order:  "+batchItemlist.get(position).getOrderIdId().getId());
+            if(batchItemlist.get(position).getOrderIdId().getCod())
+            {
+                cod.setText("Cod:  "+"True");
+            }
+            else{
+                cod.setText("Cod:  "+"False");
+            }
+
             holder.tvOrderNo.setText(String.valueOf(orderNo));
             holder.tvUserName.setText(batchItemlist.get(position).getCartUser().getCustomer().getUser().getFirst_name());
             holder.tvProduct.setText(batchItemlist.get(position).getItem().getProductName());

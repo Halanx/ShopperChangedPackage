@@ -11,7 +11,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:id="@+id/progressBar"/>
+        android:id="@+id/progressBar"
+        android:progressTint="@color/colorAccent"
+        android:progressBackgroundTint="@color/colorAccent"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,18 +42,28 @@
 
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ececec"
+        android:layout_below="@id/batch"
+        android:layout_marginTop="@dimen/margin_small"
+        />
+
     <LinearLayout
         android:id="@+id/detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_below="@id/batch"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:layout_marginBottom="@dimen/margin_medium"
         >
         <TextView
             android:id="@+id/orderno"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:text="Order: "
+            android:text=" "
             android:textSize="25dp"
             android:textColor="#313131"
             android:layout_weight="1"/>
@@ -66,6 +79,13 @@
             android:layout_alignParentTop="true"/>
 
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ececec"
+        android:layout_below="@id/detail"
+        />
 
     <android.support.v7.widget.RecyclerView
 

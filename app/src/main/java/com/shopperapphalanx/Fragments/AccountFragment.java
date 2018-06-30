@@ -59,22 +59,20 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_account_original, container, false);
 
-
-
         token = getActivity().getSharedPreferences("Tokenkey", Context.MODE_PRIVATE).getString("token",null);
         tvName = (TextView) view.findViewById(R.id.tv_name);
         tvVehicle = (TextView) view.findViewById(R.id.tv_vehicle);
         profile = view.findViewById(R.id.profile);
 
 
-        Volley.newRequestQueue(getActivity()).add(new JsonObjectRequest(Request.Method.GET, djangoBaseUrl+"shoppers/detail", new Response.Listener<JSONObject>() {
+        Volley.newRequestQueue(getActivity()).add(new JsonObjectRequest(Request.Method.GET, djangoBaseUrl+"shoppers/detail/", new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
 
                 try {
                     tvName.setText(response.getJSONObject("user").getString("first_name"));
                     tvVehicle.setText(response.getString("vehicle"));
-//                    Picasso.with(getActivity()).load().into(profile);
+                    Picasso.with(getActivity()).load(response.getString("profile_pic_url")).into(profile);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -150,6 +148,7 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.cvSettings:
+
                 break;
 
 

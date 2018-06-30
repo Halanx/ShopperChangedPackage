@@ -12,28 +12,28 @@ public class Item {
     @SerializedName("id")
     @Expose
     private Integer id;
-    @SerializedName("RelatedStore")
+    @SerializedName("store")
     @Expose
     private RelatedStore relatedStore;
-    @SerializedName("ProductName")
+    @SerializedName("name")
     @Expose
     private String productName;
-    @SerializedName("Price")
+    @SerializedName("price")
     @Expose
     private Double price;
     @SerializedName("StoreId")
     @Expose
     private Integer storeId;
-    @SerializedName("Category")
+    @SerializedName("category")
     @Expose
     private String category;
-    @SerializedName("ProductImage")
+    @SerializedName("product_image_url")
     @Expose
     private String productImage;
-    @SerializedName("Features")
+    @SerializedName("features")
     @Expose
     private String features;
-    @SerializedName("ProductSize")
+    @SerializedName("size")
     @Expose
     private Integer productSize;
     @SerializedName("Active")

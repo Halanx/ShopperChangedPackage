@@ -12,15 +12,18 @@ public class OrderId {
     @SerializedName("id")
     @Expose
     private Integer id;
-    @SerializedName("Latitude")
+    @SerializedName("latitude")
     @Expose
     private Double latitude;
-    @SerializedName("Longitude")
+    @SerializedName("longitude")
     @Expose
     private Double longitude;
-    @SerializedName("DeliveryAddress")
+    @SerializedName("delivery_address")
     @Expose
     private String deliveryAddress;
+    @SerializedName("cash_on_delivery")
+    @Expose
+    private Boolean cod;
 
     public Integer getId() {
         return id;
@@ -52,5 +55,13 @@ public class OrderId {
 
     public void setDeliveryAddress(String deliveryAddress) {
         this.deliveryAddress = deliveryAddress;
+    }
+
+    public Boolean getCod() {
+        return cod;
+    }
+
+    public void setCod(Boolean cod) {
+        this.cod = cod;
     }
 }

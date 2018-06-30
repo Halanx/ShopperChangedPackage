@@ -17,7 +17,7 @@ public class BatchInfo {
     @SerializedName("batch_items")
     @Expose
     private List<BatchItem> batchItems = null;
-    @SerializedName("Earnings")
+    @SerializedName("earnings")
     @Expose
     private Double earnings;
     @SerializedName("PermanentShopper")
@@ -32,10 +32,10 @@ public class BatchInfo {
     @SerializedName("TemporaryAvailable")
     @Expose
     private Boolean temporaryAvailable;
-    @SerializedName("CentroidLatitude")
+    @SerializedName("centroid_latitude")
     @Expose
     private Double centroidLatitude;
-    @SerializedName("CentroidLongitude")
+    @SerializedName("centroid_longitude")
     @Expose
     private Double centroidLongitude;
     @SerializedName("IsDelivered")

@@ -49,6 +49,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 import com.shopperapphalanx.Activities.OnWayStoreActivity;
 import com.shopperapphalanx.POJO.ShopperInfo;
 import com.shopperapphalanx.R;
@@ -69,6 +70,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.shopperapphalanx.GlobalClass.djangoBaseUrl;
 
 
 public class HomeFragment extends Fragment implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks,
@@ -106,16 +109,18 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
         onOff = (Button) v.findViewById(R.id.on_off);
         token = getActivity().getSharedPreferences("Tokenkey", Context.MODE_PRIVATE).getString("token",null);
         Log.d("token_key",getActivity().getSharedPreferences("Tokenkey", Context.MODE_PRIVATE).getString("token",null));
+
+
+
+
+
+
         if (getActivity().getSharedPreferences("Batch", Context.MODE_PRIVATE).getBoolean("isBusy", false)) {
             ivShowBatches.setVisibility(View.VISIBLE);
             onOff.setText("Busy");
             onOff.setClickable(false);
 
         } else {
-
-            ivShowBatches.setVisibility(View.GONE);
-
-
             mobile = getActivity().getSharedPreferences("Login", Context.MODE_PRIVATE).getString("MobileNumber", null);
             url = "https://api.halanx.com/shoppers/detail/";
             Log.i("TAG", url);
@@ -125,28 +130,72 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
             callback = this;
             progressBar = (ProgressBar) v.findViewById(R.id.progressBar);
             progressBar.setVisibility(View.GONE);
-            progressDialog = new ProgressDialog(getActivity());
-            progressDialog.setMessage("Please wait a moment");
-            progressDialog.setCancelable(false);
-            progressDialog.show();
 
 
-            Volley.newRequestQueue(getActivity()).add(new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            Volley.newRequestQueue(getActivity()).add(new JsonObjectRequest(Request.Method.GET, djangoBaseUrl + "shoppers/batches/current/", new Response.Listener<JSONObject>() {
                 @Override
-                public void onResponse(String response) {
+                public void onResponse(JSONObject response) {
+
+                    try {
+                        if(response.getJSONArray("results").length()>0){
+
+                            getActivity().getSharedPreferences(Config.SHARED_PREF, Context.MODE_PRIVATE).edit().putString("batch_id",response.getJSONArray("results").getJSONObject(0).getString("id")).commit();
+
+                            ivShowBatches.setVisibility(View.VISIBLE);
+                            onOff.setText("Busy");
+                            onOff.setClickable(false);
+
+                        } else
+                            {
+
+                                ivShowBatches.setVisibility(View.GONE);
 
 
-                    info = new GsonBuilder().create().fromJson(response, ShopperInfo.class);
-                    progressDialog.dismiss();
+                                progressDialog = new ProgressDialog(getActivity());
+                                progressDialog.setMessage("Please wait a moment");
+                                progressDialog.setCancelable(false);
+                                progressDialog.show();
 
-                    if (info.getOnline()) {
-                        checkLocationServices();
-                        mapFrag.getMapAsync(callback);
-                        progressBar.setVisibility(View.VISIBLE);
+
+                                Volley.newRequestQueue(getActivity()).add(new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+                                    @Override
+                                    public void onResponse(String response) {
+
+
+                                        info = new GsonBuilder().create().fromJson(response, ShopperInfo.class);
+                                        progressDialog.dismiss();
+
+                                        if (info.getOnline()) {
+                                            checkLocationServices();
+                                            mapFrag.getMapAsync(callback);
+                                            progressBar.setVisibility(View.VISIBLE);
+                                        }
+
+                                    }
+                                }, new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        Toast.makeText(c, "Network error", Toast.LENGTH_SHORT).show();
+
+                                    }
+                                }){
+                                    @Override
+                                    public Map<String, String> getHeaders() throws AuthFailureError {
+                                        Map<String, String> params = new HashMap<String, String>();
+                                        params.put("Content-Type", "application/json");
+                                        params.put("Authorization", getActivity().getSharedPreferences("Tokenkey", Context.MODE_PRIVATE).getString("token",null));
+                                        return params;
+                                    }
+
+                                });
+
+
+
+                            }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-
-                }
-            }, new Response.ErrorListener() {
+                }}, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     Toast.makeText(c, "Network error", Toast.LENGTH_SHORT).show();

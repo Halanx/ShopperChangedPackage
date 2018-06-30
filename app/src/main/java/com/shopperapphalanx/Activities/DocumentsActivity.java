@@ -52,8 +52,6 @@ public class DocumentsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_documents);
 
-
-
         SharedPreferences sharedPreferences = getSharedPreferences("Login", Context.MODE_PRIVATE);
         MobileNumber = sharedPreferences.getString("MobileNumber",null);
 

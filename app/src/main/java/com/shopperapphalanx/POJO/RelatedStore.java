@@ -12,7 +12,7 @@ public class RelatedStore {
     @SerializedName("id")
     @Expose
     private Integer id;
-    @SerializedName("StoreName")
+    @SerializedName("name")
     @Expose
     private String storeName;
     @SerializedName("Latitude")
@@ -21,7 +21,7 @@ public class RelatedStore {
     @SerializedName("Longitude")
     @Expose
     private Double longitude;
-    @SerializedName("StoreLogo")
+    @SerializedName("store_logo_url")
     @Expose
     private String storeLogo;
 
