@@ -89,7 +89,7 @@ public class OnWayStoreActivity extends AppCompatActivity implements View.OnClic
                     progressBar.setVisibility(View.GONE);
                     batchno.setText(String.valueOf(response.body().getResults().get(0).getId()));
                     LinearLayoutManager manager = new LinearLayoutManager(getApplicationContext());
-                    BatchesStoreAdapter adapter = new BatchesStoreAdapter(response.body().getResults().get(0),getApplicationContext());
+                    BatchesStoreAdapter adapter = new BatchesStoreAdapter(response.body().getResults().get(0),OnWayStoreActivity.this);
                     rv.setLayoutManager(manager);
                     rv.setAdapter(adapter);
                     rv.setHasFixedSize(true);

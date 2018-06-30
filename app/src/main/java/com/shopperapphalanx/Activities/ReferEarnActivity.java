@@ -3,6 +3,7 @@ package com.shopperapphalanx.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -21,6 +22,13 @@ public class ReferEarnActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_refer_earn);
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ReferEarnActivity.super.onBackPressed();
+            }
+        });
 
         tvShare = (TextView) findViewById(R.id.tv_share);
         tvShare.setOnClickListener(new View.OnClickListener() {

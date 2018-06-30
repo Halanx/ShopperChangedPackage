@@ -1,14 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_gravity="center"
-    android:gravity="center"
     android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context="com.shopperapphalanx.Activities.AboutActivity">
+
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:navigationIcon="@drawable/ic_arrow_back_black_24dp"
+        android:elevation="2dp"
+        android:id="@+id/toolbar"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="About"
+            android:textColor="@color/textcolor_dark"
+            android:textSize="@dimen/textsizeLarge"
+            />
+
+    </android.support.v7.widget.Toolbar>
+
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -19,6 +37,7 @@
         android:layout_height="wrap_content"
         android:text="Halanx is an On demand logistics platform for businesses, providing last mile delivery services."
         android:textAlignment="center"
+        android:layout_centerInParent="true"
         android:textSize="30dp"
         android:layout_margin="5dp"
         android:layout_gravity="center"
@@ -30,4 +49,4 @@
         android:layout_height="1dp"
         android:background="@android:color/darker_gray"/>
 
-</LinearLayout>
+</RelativeLayout>

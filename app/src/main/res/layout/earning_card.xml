@@ -10,9 +10,7 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:background="#fdfdfd"
-        app:contentPadding="-2dp"
-        app:cardUseCompatPadding="true"
-        app:cardPreventCornerOverlap="true"
+        android:layout_marginTop="@dimen/margin_small"
         app:cardCornerRadius="3dp"
         app:cardElevation="5dp">
 

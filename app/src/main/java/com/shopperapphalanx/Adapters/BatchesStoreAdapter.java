@@ -26,6 +26,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -40,9 +41,12 @@ import com.squareup.picasso.Picasso;
 import org.apache.commons.lang3.builder.CompareToBuilder;
 import org.json.JSONObject;
 
+import java.time.Duration;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -73,11 +77,11 @@ public class BatchesStoreAdapter extends RecyclerView.Adapter<BatchesStoreAdapte
     private RadioButton mSelectedRB;
     private int mSelectedPosition = -1;
 
-    public BatchesStoreAdapter(BatchInfo b, Context ctx) {
+    public BatchesStoreAdapter(BatchInfo b, Context applicationContext) {
 
         this.batch = b;
         batchItemlist = batch.getBatchItems();
-        c = ctx;
+        c = applicationContext;
         Collections.sort(batchItemlist, new Comparator<BatchItem>() {
             @Override
             public int compare(BatchItem b1, BatchItem b2) {
@@ -112,7 +116,7 @@ public class BatchesStoreAdapter extends RecyclerView.Adapter<BatchesStoreAdapte
                 holder.tvProductQuantity.setText(String.valueOf(batchItemlist.get(position).getQuantity()));
                 Picasso.with(c).load(batchItemlist.get(position).getItem().getProductImage()).into(holder.ivProductImage);
 
-                String pPrice = "₹ " + batchItemlist.get(position).getItem().getPrice();
+                String pPrice = "₹" + batchItemlist.get(position).getItem().getPrice();
                 holder.tvProductPrice.setText(pPrice);
 
             } else if ((batchItemlist.get(position).getItem().getRelatedStore().getStoreName().
@@ -124,7 +128,7 @@ public class BatchesStoreAdapter extends RecyclerView.Adapter<BatchesStoreAdapte
                 holder.tvProduct.setText(batchItemlist.get(position).getItem().getProductName());
                 holder.tvProductQuantity.setText(String.valueOf(batchItemlist.get(position).getQuantity()));
                 Picasso.with(c).load(batchItemlist.get(position).getItem().getProductImage()).into(holder.ivProductImage);
-                String pPrice = "₹ " + batchItemlist.get(position).getItem().getPrice();
+                String pPrice = "₹" + batchItemlist.get(position).getItem().getPrice();
                 holder.tvProductPrice.setText(pPrice);
                 if (!String.valueOf(batchItemlist.get(position).getOrderIdId()).equals("null")) {
                     holder.tvUserAddress.setText(batchItemlist.get(position).getOrderIdId().getDeliveryAddress());
@@ -142,7 +146,7 @@ public class BatchesStoreAdapter extends RecyclerView.Adapter<BatchesStoreAdapte
                 holder.tvProduct.setText(batchItemlist.get(position).getItem().getProductName());
                 holder.tvProductQuantity.setText(String.valueOf(batchItemlist.get(position).getQuantity()));
                 Picasso.with(c).load(batchItemlist.get(position).getItem().getProductImage()).into(holder.ivProductImage);
-                String pPrice = "Rs. " + batchItemlist.get(position).getItem().getPrice();
+                String pPrice = "₹" + batchItemlist.get(position).getItem().getPrice();
                 holder.tvProductPrice.setText(pPrice);
                 if (!String.valueOf(batchItemlist.get(position).getOrderIdId()).equals("null")) {
                     holder.tvUserAddress.setText(batchItemlist.get(position).getOrderIdId().getDeliveryAddress());
@@ -160,7 +164,7 @@ public class BatchesStoreAdapter extends RecyclerView.Adapter<BatchesStoreAdapte
             holder.tvProduct.setText(batchItemlist.get(position).getItem().getProductName());
             holder.tvProductQuantity.setText(String.valueOf(batchItemlist.get(position).getQuantity()));
             Picasso.with(c).load(batchItemlist.get(position).getItem().getProductImage()).into(holder.ivProductImage);
-            String pPrice = "Rs. " + batchItemlist.get(position).getItem().getPrice();
+            String pPrice = "₹" + batchItemlist.get(position).getItem().getPrice();
             holder.tvProductPrice.setText(pPrice);
             Log.d("data", String.valueOf(batchItemlist.get(position).getOrderIdId()));
             if (!String.valueOf(batchItemlist.get(position).getOrderIdId()).equals("null")) {
@@ -191,12 +195,11 @@ public class BatchesStoreAdapter extends RecyclerView.Adapter<BatchesStoreAdapte
 
                                 dialAddMoney = new Dialog(c);
                                 dialAddMoney.setContentView(R.layout.newsfeeddialogue);
-                                Button report = dialAddMoney.findViewById(R.id.report);
+                                report = dialAddMoney.findViewById(R.id.report);
                                 Button cancel = dialAddMoney.findViewById(R.id.cancel);
                                 ListView listView = dialAddMoney.findViewById(R.id.list_item);
                                 ListViewAdapter adapter = new ListViewAdapter(c,Reports);
                                 listView.setAdapter(adapter);
-                                dialAddMoney.show();
 
                                 report.setOnClickListener(new View.OnClickListener() {
                                     @Override
@@ -207,17 +210,29 @@ public class BatchesStoreAdapter extends RecyclerView.Adapter<BatchesStoreAdapte
 
                                         DataInterface client = retrofit.create(DataInterface.class);
 
-                                        Volley.newRequestQueue(c).add(new JsonObjectRequest(Request.Method.POST, djangoBaseUrl + "products/" + holder.items.get(position).getId() + "report", new Response.Listener<JSONObject>() {
+                                        Volley.newRequestQueue(c).add(new JsonObjectRequest(Request.Method.POST, djangoBaseUrl + "products/" + holder.items.get(position).getId() + "/report/", new Response.Listener<JSONObject>() {
                                             @Override
                                             public void onResponse(JSONObject response) {
 
+                                                dialAddMoney.dismiss();
+                                                Toast.makeText(c,"Successfully reported", Toast.LENGTH_SHORT).show();
                                             }
                                         }, new Response.ErrorListener() {
                                             @Override
                                             public void onErrorResponse(VolleyError error) {
 
+                                                dialAddMoney.dismiss();
                                             }
-                                        }));
+                                        }){
+                                            @Override
+                                            public Map<String, String> getHeaders() throws AuthFailureError {
+                                                Map<String, String> params = new HashMap<String, String>();
+                                                params.put("Content-Type", "application/json");
+                                                params.put("Authorization", c.getSharedPreferences("Tokenkey",Context.MODE_PRIVATE).getString("token",null));
+                                                return params;
+                                            }
+
+                                        });
 
 
                                     }
@@ -241,6 +256,8 @@ public class BatchesStoreAdapter extends RecyclerView.Adapter<BatchesStoreAdapte
 
                                     }
                                 });
+
+                                dialAddMoney.show();
 
 
 

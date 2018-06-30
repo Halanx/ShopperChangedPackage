@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -18,11 +19,26 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.gson.GsonBuilder;
 import com.shopperapphalanx.Interfaces.DataInterface;
 import com.shopperapphalanx.POJO.DocsInfo;
+import com.shopperapphalanx.POJO.ShopperInfo;
 import com.shopperapphalanx.R;
+import com.shopperapphalanx.app.Config;
+import com.squareup.picasso.Picasso;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -52,6 +68,14 @@ public class DocumentsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_documents);
 
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DocumentsActivity.super.onBackPressed();
+            }
+        });
         SharedPreferences sharedPreferences = getSharedPreferences("Login", Context.MODE_PRIVATE);
         MobileNumber = sharedPreferences.getString("MobileNumber",null);
 
@@ -84,20 +108,12 @@ public class DocumentsActivity extends AppCompatActivity {
             noteBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    Intent intent = new Intent(DocumentsActivity.this, HomeActivity.class);
-                    startActivity(intent);
+                    dialog.dismiss();
+//                    Intent intent = new Intent(DocumentsActivity.this, HomeActivity.class);
+//                    startActivity(intent);
                 }
             }).create();
             noteBuilder.show();
-
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    Intent intent = new Intent(DocumentsActivity.this, HomeActivity.class);
-                    startActivity(intent);
-                }
-            },3500);
-
 
 
         }
@@ -109,11 +125,52 @@ public class DocumentsActivity extends AppCompatActivity {
                     "submit button!");
             noteBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
-                public void onClick(DialogInterface dialog, int which) {
+                public void onClick(DialogInterface dialog, int which)
+                {
+                    dialog.dismiss();
                 }
             }).create();
             noteBuilder.show();
         }
+
+
+
+
+
+
+
+        Volley.newRequestQueue(getApplicationContext()).add(new JsonObjectRequest(Request.Method.GET, djangoBaseUrl + "shoppers/detail/", new com.android.volley.Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+
+                try {
+                    Picasso.with(getApplicationContext()).load(response.getString("aadhar_image")).into(ivAdhaar);
+                    Picasso.with(getApplicationContext()).load(response.getString("license_image")).into(ivDlicense);
+                    Picasso.with(getApplicationContext()).load(response.getString("vehicle_rc_image")).into(ivVlicense);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }}, new com.android.volley.Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), "Network error", Toast.LENGTH_SHORT).show();
+
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Content-Type", "application/json");
+                params.put("Authorization", getApplicationContext().getSharedPreferences("Tokenkey", Context.MODE_PRIVATE).getString("token",null));
+                return params;
+            }
+
+        });
+
+
+
 
 
 

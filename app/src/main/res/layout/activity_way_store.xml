@@ -17,23 +17,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:padding="@dimen/padding_small"
         android:id="@+id/batch">
         <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:text="Batch No : "
-            android:textSize="25dp"
+        android:text="Batch   "
+            android:textSize="@dimen/textsizeLarge"
             android:textColor="#313131"
-            android:layout_weight="1"
+            android:paddingStart="@dimen/padding_small"
         android:layout_alignParentTop="true"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:layout_weight="1"
             android:text=" "
             android:id="@+id/batchno"
-            android:textSize="25dp"
+            android:textSize="@dimen/textsizeLarge"
             android:textColor="#313131"
             android:layout_alignParentTop="true"/>
 
@@ -46,6 +46,7 @@
         android:layout_below="@id/batch"
         android:layout_weight="1"
 
+        android:padding="@dimen/padding_small"
         android:layout_marginBottom="48dp"
         android:id="@+id/rv_batches">
 

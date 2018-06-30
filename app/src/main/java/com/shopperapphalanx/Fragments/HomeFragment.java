@@ -102,16 +102,11 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
     int i=0;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        c = getActivity();
         View v = inflater.inflate(R.layout.fragment_home, container, false);
         ivShowBatches = (ImageView) v.findViewById(R.id.iv_show_batches);
         onOff = (Button) v.findViewById(R.id.on_off);
         token = getActivity().getSharedPreferences("Tokenkey", Context.MODE_PRIVATE).getString("token",null);
         Log.d("token_key",getActivity().getSharedPreferences("Tokenkey", Context.MODE_PRIVATE).getString("token",null));
-
-
-
 
 
 
@@ -198,7 +193,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
                 }}, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(c, "Network error", Toast.LENGTH_SHORT).show();
 
                 }
             }){
@@ -251,7 +245,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
                             }, new Response.ErrorListener() {
                                 @Override
                                 public void onErrorResponse(VolleyError error) {
-                                    Toast.makeText(c, "error", Toast.LENGTH_SHORT).show();
                                 }
                             }){
                                 @Override
@@ -310,7 +303,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
                             }, new Response.ErrorListener() {
                                 @Override
                                 public void onErrorResponse(VolleyError error) {
-                                    Toast.makeText(c, "Network error", Toast.LENGTH_SHORT).show();
                                 }
                             }){
                                 @Override

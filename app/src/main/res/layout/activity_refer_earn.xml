@@ -1,18 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_refer_earn"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:orientation="vertical"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:layout_gravity="center"
-    android:gravity="center"
     tools:context="com.shopperapphalanx.Activities.ReferEarnActivity">
+
+
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:navigationIcon="@drawable/ic_arrow_back_black_24dp"
+        android:elevation="2dp"
+        android:id="@+id/toolbar"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Refer and earn"
+            android:textColor="@color/textcolor_dark"
+            android:textSize="@dimen/textsizeLarge"
+            />
+
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:orientation="vertical"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:layout_gravity="center"
+        android:gravity="center"
+        >
 
     <TextView
         android:layout_width="match_parent"
@@ -68,7 +93,5 @@
         <!--app:srcCompat="?attr/actionModeShareDrawable"-->
         <!--android:background="@drawable/cast_abc_scrubber_control_off_mtrl_alpha"-->
         <!--android:layout_width="@android:dimen/app_icon_size" />-->
-
-
-
-</LinearLayout>
+    </LinearLayout>
+    </RelativeLayout>
