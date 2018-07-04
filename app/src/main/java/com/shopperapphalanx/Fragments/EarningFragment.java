@@ -138,62 +138,61 @@ public class EarningFragment extends Fragment {
         orderCall.enqueue(new Callback<earningpagination>() {
             @Override
             public void onResponse(Call<earningpagination> call, retrofit2.Response<earningpagination> response) {
+                if (response.body() != null) {
+                    noOfOrders = response.body().getResults().size();
+                    data = response.body().getResults();
+                    if (noOfOrders > 0) {
+                        for (int i = 0; i < response.body().getResults().size(); i++) {
+                            progressBar.setVisibility(View.GONE);
+                            orderNo.add(data.get(i).getId());
+                            earn.add(data.get(i).getEarnings());
+                        }
+                        earningRecycler = (RecyclerView) v.findViewById(R.id.earning_recycler);
+                        earningManager = new LinearLayoutManager(getContext());
+                        earningAdapter = new EarningRecyclerAdapter(data);
+                        earningRecycler.setLayoutManager(earningManager);
+                        earningRecycler.setAdapter(earningAdapter);
+                        earningRecycler.addOnScrollListener(new EndlessRecyclerOnScrollListener(earningManager) {
+                            @Override
+                            public void onLoadMore(int current_page) {
 
-                noOfOrders = response.body().getResults().size();
-                data = response.body().getResults();
-                if (noOfOrders > 0) {
-                    for (int i = 0; i < response.body().getResults().size(); i++) {
-                        progressBar.setVisibility(View.GONE);
-                        orderNo.add(data.get(i).getId());
-                        earn.add(data.get(i).getEarnings());
-                    }
-                    earningRecycler = (RecyclerView) v.findViewById(R.id.earning_recycler);
-                    earningManager = new LinearLayoutManager(getContext());
-                    earningAdapter = new EarningRecyclerAdapter(data);
-                    earningRecycler.setLayoutManager(earningManager);
-                    earningRecycler.setAdapter(earningAdapter);
-                    earningRecycler.addOnScrollListener(new EndlessRecyclerOnScrollListener(earningManager) {
-                        @Override
-                        public void onLoadMore(int current_page) {
+                                Log.d("pagination", String.valueOf(pageposition));
+                                Call<earningpagination> orderCall = client.geteraningdata(token, String.valueOf(current_page));
+                                orderCall.enqueue(new Callback<earningpagination>() {
+                                    @Override
+                                    public void onResponse(Call<earningpagination> call, retrofit2.Response<earningpagination> response) {
 
-                            Log.d("pagination", String.valueOf(pageposition));
-                            Call<earningpagination> orderCall = client.geteraningdata(token, String.valueOf(current_page));
-                            orderCall.enqueue(new Callback<earningpagination>() {
-                                @Override
-                                public void onResponse(Call<earningpagination> call, retrofit2.Response<earningpagination> response) {
+                                        if (!String.valueOf(response.body()).equals("null")) {
 
-                                    if (!String.valueOf(response.body()).equals("null")){
-
-                                        List<BatchInfo> allOrdersList = response.body().getResults();
+                                            List<BatchInfo> allOrdersList = response.body().getResults();
 
 
-                                        for (int i = 0;i<allOrdersList.size() ; i++) {
+                                            for (int i = 0; i < allOrdersList.size(); i++) {
 
-                                            data.add(allOrdersList.get(i));
-                                            earningAdapter.notifyItemRangeChanged(earningAdapter.getItemCount(),allOrdersList.size()-1);
+                                                data.add(allOrdersList.get(i));
+                                                earningAdapter.notifyItemRangeChanged(earningAdapter.getItemCount(), allOrdersList.size() - 1);
+                                            }
                                         }
                                     }
-                                }
 
-                                @Override
-                                public void onFailure(Call<earningpagination> call, Throwable t)
-                                {
+                                    @Override
+                                    public void onFailure(Call<earningpagination> call, Throwable t) {
 //                            no_internet.setVisibility(View.VISIBLE);
 
-                                }
-                            });
+                                    }
+                                });
 
 
-                        }
-                    });
+                            }
+                        });
 
+                    } else {
+                        progressBar.setVisibility(View.GONE);
+                        noerning.setVisibility(View.VISIBLE);
+
+                    }
                 }
-                else{
-                    progressBar.setVisibility(View.GONE);
-                    noerning.setVisibility(View.VISIBLE);
-
-                }
-           }
+            }
 
             @Override
             public void onFailure(Call<earningpagination> call, Throwable t) {

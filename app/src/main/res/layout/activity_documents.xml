@@ -61,7 +61,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Submit your adhar"
+                android:text="Submit your Aadhaar"
                 android:textSize="15dp"
                 android:textStyle="bold"
                 android:textColor="#444444"
