@@ -54,6 +54,12 @@ xmlns:tools="http://schemas.android.com/tools" package="com.shopperapphalanx">
 
     <activity android:name=".Activities.Acceptance" android:label="Accept Batch"/>
 
+
+    <service android:name=".service.locationservice"
+        android:enabled="true"
+        android:process=":processname"/>
+
+
     <!-- Firebase Notifications -->
     <service android:name=".service.MyFirebaseMessagingService">
         <intent-filter>

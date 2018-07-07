@@ -15,7 +15,10 @@ public class ShopperInfo {
     @SerializedName("LastName")
     @Expose
     private String lastName;
-    @SerializedName("PhoneNo")
+    @SerializedName("user")
+    @Expose
+    private User user;
+    @SerializedName("phone_no")
     @Expose
     private long phoneNo;
     @SerializedName("password")
@@ -24,11 +27,11 @@ public class ShopperInfo {
     @SerializedName("EmailId")
     @Expose
     private String emailId;
-    @SerializedName("City")
+    @SerializedName("city")
     @Expose
     private String city;
 
-    @SerializedName("DisplayPictureURL")
+    @SerializedName("profile_pic_url")
     @Expose
     private String displayPictureURL;
     @SerializedName("AccessToken")
@@ -43,34 +46,34 @@ public class ShopperInfo {
     @SerializedName("IdType")
     @Expose
     private String idType;
-    @SerializedName("Vehicle")
+    @SerializedName("vehicle")
     @Expose
     private String vehicle;
     @SerializedName("VehicleSpaceAvailable")
     @Expose
     private Integer vehicleSpaceAvailable;
-    @SerializedName("AvailableDate")
+    @SerializedName("available_date")
     @Expose
     private String availableDate;
-    @SerializedName("AvailableFrom")
+    @SerializedName("available_from")
     @Expose
     private String availableFrom;
-    @SerializedName("AvailableTo")
+    @SerializedName("available_to")
     @Expose
     private String availableTo;
-    @SerializedName("IsOnline")
+    @SerializedName("is_online")
     @Expose
     private Boolean isOnline;
-    @SerializedName("Latitude")
+    @SerializedName("latitude")
     @Expose
     private Double latitude;
-    @SerializedName("Longitude")
+    @SerializedName("longitude")
     @Expose
     private Double longitude;
-    @SerializedName("BankAccountNumber")
+    @SerializedName("bank_account_number")
     @Expose
     private String bankAccountNumber;
-    @SerializedName("BankAccountType")
+    @SerializedName("bank_account_type")
     @Expose
     private String bankAccountType;
     @SerializedName("BankName")
@@ -85,7 +88,7 @@ public class ShopperInfo {
     @SerializedName("IFSCCode")
     @Expose
     private String iFSCCode;
-    @SerializedName("AvgRating")
+    @SerializedName("avg_rating")
     @Expose
     private Double avgRating;
     @SerializedName("n")
@@ -396,5 +399,13 @@ public class ShopperInfo {
 
     public void setVerified(Boolean verified) {
         this.verified = verified;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

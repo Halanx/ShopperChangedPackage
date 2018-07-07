@@ -117,7 +117,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Google
 
         } else {
             mobile = getActivity().getSharedPreferences("Login", Context.MODE_PRIVATE).getString("MobileNumber", null);
-            url = "https://api.halanx.com/shoppers/detail/";
+            url = djangoBaseUrl+"shoppers/detail/";
             Log.i("TAG", url);
 
             setLocation = (FloatingActionButton) v.findViewById(R.id.set_location1);

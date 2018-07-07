@@ -26,6 +26,7 @@ import com.shopperapphalanx.Fragments.HomeFragment;
 import com.shopperapphalanx.Fragments.RatingFragment;
 import com.shopperapphalanx.R;
 import com.shopperapphalanx.app.Config;
+import com.shopperapphalanx.service.locationservice;
 import com.shopperapphalanx.util.NotificationUtils;
 
 public class HomeActivity extends AppCompatActivity {
@@ -47,6 +48,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        startService(new Intent(this, locationservice.class));
 
         homeFragment = new HomeFragment();
         earningFragment = new EarningFragment();
